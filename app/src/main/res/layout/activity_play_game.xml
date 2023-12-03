@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/layout_question"
+    android:background="@color/purple_200"
     tools:context=".PlayGameActivity">
 
     <!-- Wrap the content with NestedScrollView -->
@@ -13,6 +13,7 @@
         android:id="@+id/nestedScrollView"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:layout_marginBottom="20dp"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -44,16 +45,39 @@
                     android:textSize="24sp"
                     android:textColor="@color/white"/>
 
-                <!-- RadioGroup for Question 1 -->
+                <!-- RadioGroup for Question 1-->
                 <RadioGroup
                     android:id="@+id/radioGroup1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
-                    <!-- Radio Buttons for Question 1 -->
-                    <!-- ... -->
+                <RadioButton
+                    android:id="@+id/choose1a"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="Đáp án A"
+                    tools:ignore="TouchTargetSizeCheck" />
 
+                <RadioButton
+                    android:id="@+id/choose1b"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="Đáp án B"
+                    tools:ignore="TouchTargetSizeCheck" />
+                <RadioButton
+                    android:id="@+id/choose1c"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="Đáp án C"
+                    tools:ignore="TouchTargetSizeCheck" />
+                <RadioButton
+                    android:id="@+id/choose1d"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="Đáp án D"
+                    tools:ignore="TouchTargetSizeCheck" />
                 </RadioGroup>
+                <!-- Radio Buttons for Question 1-->
             </LinearLayout>
 
             <!-- Question Item 2 -->
@@ -86,31 +110,452 @@
                         android:id="@+id/choose2a"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:text="cau a"
+                        android:text="Đáp án A"
                         tools:ignore="TouchTargetSizeCheck" />
+
+                    <RadioButton
+                        android:id="@+id/choose2b"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="Đáp án B"
+                        tools:ignore="TouchTargetSizeCheck" />
+                    <RadioButton
+                        android:id="@+id/choose2c"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="Đáp án C"
+                        tools:ignore="TouchTargetSizeCheck" />
+                    <RadioButton
+                        android:id="@+id/choose2d"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="Đáp án D"
+                        tools:ignore="TouchTargetSizeCheck" />
+
                     <!-- Radio Buttons for Question 2 -->
                     <!-- ... -->
 
                 </RadioGroup>
             </LinearLayout>
+            <!-- Question Item 3 -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginTop="20dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp">
+            <TextView
+                android:id="@+id/question3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Question 3:"
+                android:autoSizeTextType="uniform"
+                android:autoSizeMinTextSize="12sp"
+                android:textSize="24sp"
+                android:textColor="@color/white"/>
+            <!-- RadioGroup for Question 3-->
+            <RadioGroup
+                android:id="@+id/radioGroup3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
+                <RadioButton
+                    android:id="@+id/choose3a"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="Đáp án A"
+                    tools:ignore="TouchTargetSizeCheck" />
+
+                <RadioButton
+                    android:id="@+id/choose3b"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="Đáp án B"
+                    tools:ignore="TouchTargetSizeCheck" />
+                <RadioButton
+                    android:id="@+id/choose3c"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="Đáp án C"
+                    tools:ignore="TouchTargetSizeCheck" />
+                <RadioButton
+                    android:id="@+id/choose3d"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="Đáp án D"
+                    tools:ignore="TouchTargetSizeCheck" />
+            </RadioGroup>
+            <!-- Radio Buttons for Question 3-->
+        </LinearLayout>
+            <!-- Question Item 4 -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginTop="20dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp">
+                <TextView
+                    android:id="@+id/question4"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Question 4:"
+                    android:autoSizeTextType="uniform"
+                    android:autoSizeMinTextSize="12sp"
+                    android:textSize="24sp"
+                    android:textColor="@color/white"/>
+                <!-- RadioGroup for Question 4-->
+                <RadioGroup
+                    android:id="@+id/radioGroup4"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <RadioButton
+                        android:id="@+id/choose4a"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="Đáp án A"
+                        tools:ignore="TouchTargetSizeCheck" />
+
+                    <RadioButton
+                        android:id="@+id/choose4b"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="Đáp án B"
+                        tools:ignore="TouchTargetSizeCheck" />
+                    <RadioButton
+                        android:id="@+id/choose4c"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="Đáp án C"
+                        tools:ignore="TouchTargetSizeCheck" />
+                    <RadioButton
+                        android:id="@+id/choose4d"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="Đáp án D"
+                        tools:ignore="TouchTargetSizeCheck" />
+                </RadioGroup>
+                <!-- Radio Buttons for Question 4-->
+            </LinearLayout>
+            <!-- Question Item 5 -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginTop="20dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp">
+                <TextView
+                    android:id="@+id/question5"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Question 5:"
+                    android:autoSizeTextType="uniform"
+                    android:autoSizeMinTextSize="12sp"
+                    android:textSize="24sp"
+                    android:textColor="@color/white"/>
+                <!-- RadioGroup for Question 5-->
+                <RadioGroup
+                    android:id="@+id/radioGroup5"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <RadioButton
+                        android:id="@+id/choose5a"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="Đáp án A"
+                        tools:ignore="TouchTargetSizeCheck" />
+
+                    <RadioButton
+                        android:id="@+id/choose5b"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="Đáp án B"
+                        tools:ignore="TouchTargetSizeCheck" />
+                    <RadioButton
+                        android:id="@+id/choose5c"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="Đáp án C"
+                        tools:ignore="TouchTargetSizeCheck" />
+                    <RadioButton
+                        android:id="@+id/choose5d"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="Đáp án D"
+                        tools:ignore="TouchTargetSizeCheck" />
+                </RadioGroup>
+                <!-- Radio Buttons for Question 5-->
+            </LinearLayout>
+            <!-- Question Item 6 -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginTop="20dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp">
+                <TextView
+                    android:id="@+id/question6"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Question 6:"
+                    android:autoSizeTextType="uniform"
+                    android:autoSizeMinTextSize="12sp"
+                    android:textSize="24sp"
+                    android:textColor="@color/white"/>
+                <!-- RadioGroup for Question 6-->
+                <RadioGroup
+                    android:id="@+id/radioGroup6"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <RadioButton
+                        android:id="@+id/choose6a"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="Đáp án A"
+                        tools:ignore="TouchTargetSizeCheck" />
+
+                    <RadioButton
+                        android:id="@+id/choose6b"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="Đáp án B"
+                        tools:ignore="TouchTargetSizeCheck" />
+                    <RadioButton
+                        android:id="@+id/choose6c"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="Đáp án C"
+                        tools:ignore="TouchTargetSizeCheck" />
+                    <RadioButton
+                        android:id="@+id/choose6d"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="Đáp án D"
+                        tools:ignore="TouchTargetSizeCheck" />
+                </RadioGroup>
+                <!-- Radio Buttons for Question 6-->
+            </LinearLayout>
+            <!-- Question Item 7 -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginTop="20dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp">
+                <TextView
+                    android:id="@+id/question7"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Question 7:"
+                    android:autoSizeTextType="uniform"
+                    android:autoSizeMinTextSize="12sp"
+                    android:textSize="24sp"
+                    android:textColor="@color/white"/>
+                <!-- RadioGroup for Question 7-->
+                <RadioGroup
+                    android:id="@+id/radioGroup7"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <RadioButton
+                        android:id="@+id/choose7a"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="Đáp án A"
+                        tools:ignore="TouchTargetSizeCheck" />
+
+                    <RadioButton
+                        android:id="@+id/choose7b"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="Đáp án B"
+                        tools:ignore="TouchTargetSizeCheck" />
+                    <RadioButton
+                        android:id="@+id/choose7c"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="Đáp án C"
+                        tools:ignore="TouchTargetSizeCheck" />
+                    <RadioButton
+                        android:id="@+id/choose7d"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="Đáp án D"
+                        tools:ignore="TouchTargetSizeCheck" />
+                </RadioGroup>
+                <!-- Radio Buttons for Question 7-->
+            </LinearLayout>
+            <!-- Question Item 8 -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginTop="20dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp">
+                <TextView
+                    android:id="@+id/question8"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Question 8:"
+                    android:autoSizeTextType="uniform"
+                    android:autoSizeMinTextSize="12sp"
+                    android:textSize="24sp"
+                    android:textColor="@color/white"/>
+                <!-- RadioGroup for Question 8-->
+                <RadioGroup
+                    android:id="@+id/radioGroup8"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <RadioButton
+                        android:id="@+id/choose8a"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="Đáp án A"
+                        tools:ignore="TouchTargetSizeCheck" />
+
+                    <RadioButton
+                        android:id="@+id/choose8b"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="Đáp án B"
+                        tools:ignore="TouchTargetSizeCheck" />
+                    <RadioButton
+                        android:id="@+id/choose8c"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="Đáp án C"
+                        tools:ignore="TouchTargetSizeCheck" />
+                    <RadioButton
+                        android:id="@+id/choose8d"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="Đáp án D"
+                        tools:ignore="TouchTargetSizeCheck" />
+                </RadioGroup>
+                <!-- Radio Buttons for Question 8-->
+            </LinearLayout>
+            <!-- Question Item 9 -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginTop="20dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp">
+                <TextView
+                    android:id="@+id/question9"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Question 9:"
+                    android:autoSizeTextType="uniform"
+                    android:autoSizeMinTextSize="12sp"
+                    android:textSize="24sp"
+                    android:textColor="@color/white"/>
+                <!-- RadioGroup for Question 9-->
+                <RadioGroup
+                    android:id="@+id/radioGroup9"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <RadioButton
+                        android:id="@+id/choose9a"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="Đáp án A"
+                        tools:ignore="TouchTargetSizeCheck" />
+
+                    <RadioButton
+                        android:id="@+id/choose9b"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="Đáp án B"
+                        tools:ignore="TouchTargetSizeCheck" />
+                    <RadioButton
+                        android:id="@+id/choose9c"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="Đáp án C"
+                        tools:ignore="TouchTargetSizeCheck" />
+                    <RadioButton
+                        android:id="@+id/choose9d"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="Đáp án D"
+                        tools:ignore="TouchTargetSizeCheck" />
+                </RadioGroup>
+                <!-- Radio Buttons for Question 9-->
+            </LinearLayout>
+            <!-- Question Item 10 -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginTop="20dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp">
+                <TextView
+                    android:id="@+id/question10"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Question 10:"
+                    android:autoSizeTextType="uniform"
+                    android:autoSizeMinTextSize="12sp"
+                    android:textSize="24sp"
+                    android:textColor="@color/white"/>
+                <!-- RadioGroup for Question 10-->
+                <RadioGroup
+                    android:id="@+id/radioGroup10"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <RadioButton
+                        android:id="@+id/choose10a"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="Đáp án A"
+                        tools:ignore="TouchTargetSizeCheck" />
+
+                    <RadioButton
+                        android:id="@+id/choose10b"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="Đáp án B"
+                        tools:ignore="TouchTargetSizeCheck" />
+                    <RadioButton
+                        android:id="@+id/choose10c"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="Đáp án C"
+                        tools:ignore="TouchTargetSizeCheck" />
+                    <RadioButton
+                        android:id="@+id/choose10d"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="Đáp án D"
+                        tools:ignore="TouchTargetSizeCheck" />
+                </RadioGroup>
+                <!-- Radio Buttons for Question 10-->
+            </LinearLayout>
             <!-- Add more Question Items as needed -->
+            <Button
+                android:id="@+id/button_submit_ans"
+                android:layout_width="150dp"
+                android:layout_height="70dp"
+                android:layout_marginTop="40dp"
+                android:background="@drawable/button_submit_selector"
+                android:layout_gravity="center_horizontal"
+                android:contentDescription="Submit Answer"/>
 
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
-
-    <!-- Next Button -->
-    <Button
-        android:id="@+id/button_next_question"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:background="@drawable/button_next"
-        android:contentDescription="Next"
-        android:text=""
-        app:layout_constraintTop_toBottomOf="@+id/nestedScrollView"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintVertical_bias="0.82" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

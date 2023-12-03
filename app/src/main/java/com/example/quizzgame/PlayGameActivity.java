@@ -1,34 +1,25 @@
-package com.example.xemphim;
+package com.example.quizzgame;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
-import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import org.w3c.dom.Text;
-
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.concurrent.BlockingDeque;
 
 public class PlayGameActivity extends AppCompatActivity {
     private TextView questionView;
@@ -40,13 +31,8 @@ public class PlayGameActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_play_game);
-        Button button_next = findViewById(R.id.button_next_question);
-        button_next.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(PlayGameActivity.this,AddQuestionActivity.class));
-            }
-        });
+        Button button_submit = findViewById(R.id.button_submit_ans);
+
 
     }
     public boolean checkDupplicate(String ans,ArrayList<String> arrayList){
@@ -95,11 +81,7 @@ public class PlayGameActivity extends AppCompatActivity {
         });
 
     }
-    public void addQuestion(long num,ArrayList<String> arrayList){
-        createChildQuestion(arrayList,num,"Three of these animals hibernate.Which one does not?","Sloth","Mouse","Sloth","Frog","Snake");
-        createChildQuestion(arrayList,num,"All of these animals are omnivorous except one.","Snail","Fox","Mouse","Opossum","Snail");
-        createChildQuestion(arrayList,num,"Three of these Latin names are names of bears. Which is the odd one?","Felis silvestris catus","Melursus ursinus","Helarctos malayanus","Ursus minimus","Felis silvestris catus");
-    }
+
     public void removeNode(){
         DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("data_question");
 
@@ -120,24 +102,6 @@ public class PlayGameActivity extends AppCompatActivity {
                 }
             });
         }
-    }
-    private  void createChildQuestion(ArrayList<String> arrayList,long number, String question, String answer, String o1,String o2,String o3,String o4){
-        if(checkDupplicate(question,arrayList)){
-            String node = "data_question/question"+(number+1);
-            Log.d("resultLog","Data node = " + node  );
-            FirebaseDatabase database = FirebaseDatabase.getInstance();
-            DatabaseReference myRef = database.getReference(node);
-            myRef.child("question").setValue(question);
-            myRef.child("answer").setValue(answer);
-
-            myRef.child("option").child("A").setValue(o1);
-            myRef.child("option").child("B").setValue(o2);
-            myRef.child("option").child("C").setValue(o3);
-            myRef.child("option").child("D").setValue(o4);
-            listQuestion.add(question);
-        }
-        countChildNodes();
-
     }
 
     public void updateCountQuest() {
@@ -193,7 +157,6 @@ public class PlayGameActivity extends AppCompatActivity {
         // Xử lý giá trị nodeCount ở đây
         Log.d("ChildCount", "Handling node count: " + count);
         getListQuestion();
-        addQuestion(count,listQuestion);
 
     }
     private void handleList(ArrayList<String> arr){

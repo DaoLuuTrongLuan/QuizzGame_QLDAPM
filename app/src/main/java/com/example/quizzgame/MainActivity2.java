@@ -1,4 +1,4 @@
-package com.example.xemphim;
+package com.example.quizzgame;
 
 import androidx.appcompat.app.AppCompatActivity;
 

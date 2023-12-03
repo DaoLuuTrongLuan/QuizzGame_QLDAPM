@@ -1,21 +1,21 @@
 {
   "project_info": {
-    "project_number": "432978045712",
-    "project_id": "xemphim-cbe72",
-    "storage_bucket": "xemphim-cbe72.appspot.com"
+    "project_number": "482391061741",
+    "project_id": "quizzgmae",
+    "storage_bucket": "quizzgmae.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:432978045712:android:27c5b8ba266f89ba0cd395",
+        "mobilesdk_app_id": "1:482391061741:android:1f0c894208934e3ac748e4",
         "android_client_info": {
-          "package_name": "com.example.xemphim"
+          "package_name": "com.example.quizzgame"
         }
       },
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyAP06hkDyucElP68byVp6uR59Dau5b-Z38"
+          "current_key": "AIzaSyBV88tE-_4SfWWGjQfHtDsvpaJcKOf-iCM"
         }
       ],
       "services": {
