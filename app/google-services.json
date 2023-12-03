@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "432978045712",
+    "project_id": "xemphim-cbe72",
+    "storage_bucket": "xemphim-cbe72.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:432978045712:android:27c5b8ba266f89ba0cd395",
+        "android_client_info": {
+          "package_name": "com.example.xemphim"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAP06hkDyucElP68byVp6uR59Dau5b-Z38"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
