@@ -20,6 +20,10 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Random;
+import java.util.Set;
 
 public class PlayGameActivity extends AppCompatActivity {
     private TextView questionView;
@@ -35,8 +39,8 @@ public class PlayGameActivity extends AppCompatActivity {
 
 
     }
-    public boolean checkDupplicate(String ans,ArrayList<String> arrayList){
-       return arrayList.contains(ans);
+    public boolean checkDupplicate(String ans,List<String> list){
+       return list.contains(ans);
     }
    
     public void removeSingleNode(String nameNode) {
@@ -56,32 +60,47 @@ public class PlayGameActivity extends AppCompatActivity {
     }
     public void getListQuestion(){
         DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("data_question");
-
         databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                if (dataSnapshot.exists()) {
-                   for(DataSnapshot snapshot : dataSnapshot.getChildren()){
-                       String ques =(String) snapshot.child("question").getValue();
-                       listQuestion.add(ques);
-                       Log.d("resultLog", "ques = " + ques);
-                   }
-                handleList(listQuestion);
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                Set<String> list = randomList10Question(snapshot.getChildrenCount());
+                for(String s : list){
 
-                } else {
-                    Log.d("resultLog", "Không có node con.");
                 }
-                Log.d("resultLog", "onDataChange: "+listQuestion.size());
             }
 
             @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-                Log.e("ChildNode", "Lỗi khi đọc dữ liệu từ Firebase.", databaseError.toException());
+            public void onCancelled(@NonNull DatabaseError error) {
+
             }
         });
-
     }
+    // tao danh sach 10 cau hoi duoc lay ngau nhien trong database
+    public Set<String> randomList10Question(long totalQues){
+        Random rd = new Random();
+        Set<String> list = new HashSet<>();
+        while(list.size()<10){
+            int rdNum = rd.nextInt((int) totalQues)+1;
+            list.add("question"+rdNum);
+        }
+        return list;
+    }
+    // tien hanh ghi du lieu duoc lay ve vao giao dien cau hoi
+    public void setQuestionView(ArrayList<Question> listquestion){
+        for(int i=1;i<11;i++){
+            String textViewId = "question"+i;
+            // Lấy id tương ứng với tên id
+            int resId = getResources().getIdentifier(textViewId, "id", getPackageName());
 
+            // Kiểm tra xem id có tồn tại hay không
+            if (resId != 0) {
+
+                // Nếu tồn tại, thì sử dụng findViewById để lấy TextView và đặt text
+                TextView questionTextView = findViewById(resId);
+                questionTextView.setText(listquestion.get(i).getQuestion());
+            }
+        }
+    }
     public void removeNode(){
         DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("data_question");
 
