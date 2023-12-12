@@ -67,15 +67,17 @@
             android:id="@+id/button_register"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#9ae1dd"
+            android:background="#376CE0"
             android:text="Đăng kí"
+            android:textColor="#ffffff"
             android:layout_marginTop="20dp"/>
         <Button
             android:id="@+id/button_login"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#81F174"
+            android:background="#FF5353"
             android:text="Đăng nhập"
+            android:textColor="#ffffff"
             android:layout_marginTop="20dp"/>
 
     </LinearLayout>

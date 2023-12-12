@@ -15,6 +15,7 @@
         android:paddingRight="20dp"
         android:paddingBottom="20dp">
 
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -56,8 +57,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            android:background="#9ae1dd"
+            android:background="#FF5353"
             android:text="Đăng nhập"
+            android:textColor="#ffffff"
             tools:ignore="MissingConstraints" />
 
         <Button
@@ -65,8 +67,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:background="#81F174"
+            android:background="#376CE0"
             android:text="Đăng kí"
+            android:textColor="#ffffff"
             tools:ignore="MissingConstraints" />
 
         <TextView
@@ -110,7 +113,7 @@
             android:layout_width="match_parent"
             android:layout_height="200dp"
             android:layout_marginTop="40dp"
-            app:srcCompat="@mipmap/news"
+            app:srcCompat="@mipmap/idea"
             tools:ignore="MissingConstraints" />
 
 
