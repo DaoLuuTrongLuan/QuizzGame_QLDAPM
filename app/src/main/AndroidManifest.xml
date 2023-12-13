@@ -2,6 +2,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -10,20 +14,25 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.XemPhim"
+        android:theme="@style/Theme.Design.Light.NoActionBar"
         tools:targetApi="31">
         <activity
-            android:name=".MainActivity2"
+            android:name=".UpdateInfoActivity"
             android:exported="false" />
         <activity
-            android:name=".AddQuestionActivity"
-            android:windowSoftInputMode="adjustPan"
+            android:name=".ProfileActivity"
+            android:exported="true" />
+        <activity
+            android:name=".LoginActivity"
+            android:exported="true" />
+        <activity
+            android:name=".HomeActivity"
             android:exported="false" />
         <activity
-            android:name=".PlayGameActivity"
-            android:exported="false" />
+            android:name=".RegisterActivity"
+            android:exported="true" />
         <activity
-            android:name=".MainActivity"
+            android:name=".LogoActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -1,4 +1,4 @@
-package com.example.quizzgame;
+package com.example.quizzgame.model;
 
 public class Question {
     private String question;
@@ -10,6 +10,15 @@ public class Question {
 
     public Question(){
 
+    }
+
+    public Question(String question, String ans, String o1, String o2, String o3, String o4) {
+        this.question = question;
+        this.ans = ans;
+        this.o1 = o1;
+        this.o2 = o2;
+        this.o3 = o3;
+        this.o4 = o4;
     }
 
     public String getQuestion() {
