@@ -34,6 +34,17 @@ public class ProfileActivity extends AppCompatActivity {
         admin = findViewById(R.id.admin);
         checkRole();
 
+        tv_name = findViewById(R.id.tv_name);
+        tv_email = findViewById(R.id.tv_email);
+
+        back = findViewById(R.id.back);
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
+
         tv_exit = findViewById(R.id.tv_logout);
         tv_exit.setOnClickListener(new View.OnClickListener() {
             @Override
