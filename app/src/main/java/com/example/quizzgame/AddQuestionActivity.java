@@ -183,6 +183,8 @@ public class AddQuestionActivity extends AppCompatActivity {
     public void showNotionFailure(String s){
         LayoutInflater inflater = getLayoutInflater();
         View layout = inflater.inflate(R.layout.notion_failure_layout, (ViewGroup) findViewById(R.id.notion_failure));
+
+
         TextView text = layout.findViewById(R.id.text_notion_failure);
         text.setText(s);
 
