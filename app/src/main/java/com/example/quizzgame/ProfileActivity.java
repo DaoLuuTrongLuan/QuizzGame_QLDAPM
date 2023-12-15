@@ -79,8 +79,8 @@ public class ProfileActivity extends AppCompatActivity {
             @Override
             public void onSuccess(DocumentSnapshot documentSnapshot) {
                 if (documentSnapshot.exists()) {
-                    tv_name.setText(documentSnapshot.getString("name"));
-                    tv_email.setText(hideEmail(documentSnapshot.getString("email")));
+                    tv_name.setText(documentSnapshot.getString("name") + "");
+                    tv_email.setText(hideEmail(documentSnapshot.getString("email") + ""));
                 }
             }
         }).addOnFailureListener(new OnFailureListener() {
