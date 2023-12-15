@@ -10,7 +10,7 @@
         android:id="@+id/textViewHeaderProfile"
         android:layout_width="match_parent"
         android:layout_height="300dp"
-        android:background="#FFBD00"
+        android:background="#FFFC00"
         android:text=""
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="MissingConstraints"
