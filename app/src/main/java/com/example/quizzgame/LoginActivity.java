@@ -100,7 +100,11 @@ public class LoginActivity extends AppCompatActivity {
     private void writeInfoLogin(String id, String username, String password) {
         SQLiteDatabase db = openOrCreateDatabase("statelogin", MODE_PRIVATE, null);
         String sql = "CREATE TABLE login (idUser TEXT,username TEXT,password TEXT)";
-        db.execSQL(sql);
+        try {
+            db.execSQL(sql);
+        } catch (Exception e){
+
+        }
         ContentValues values = new ContentValues();
         values.put("idUser", id);
         values.put("username", username);

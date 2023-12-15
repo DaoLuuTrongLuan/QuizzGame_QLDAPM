@@ -1,5 +1,6 @@
 package com.example.quizzgame.firebase;
 
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.HashMap;
@@ -21,5 +22,27 @@ public class DatabaseFirebase {
         save.put("role", "user");
         save.put("typeAccount", "0");
         db.collection("users").add(save);
+    }
+
+    public void deleteUser(String document) {
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        DocumentReference docRef = db.collection("users").document(document);
+        docRef.delete();
+    }
+
+    public void updateNameUser(String name, String id) {
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        DocumentReference docRef = db.collection("users").document(id);
+        Map<String, Object> newData = new HashMap<>();
+        newData.put("name", name);
+        docRef.update(newData);
+    }
+
+    public void updatePasswordUser(String pass, String id) {
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        DocumentReference docRef = db.collection("users").document(id);
+        Map<String, Object> newData = new HashMap<>();
+        newData.put("password", pass);
+        docRef.update(newData);
     }
 }
