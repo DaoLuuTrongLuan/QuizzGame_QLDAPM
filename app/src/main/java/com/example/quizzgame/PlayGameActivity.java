@@ -6,11 +6,18 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
+import com.example.quizzgame.model.Question;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DataSnapshot;
@@ -20,25 +27,135 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Random;
+import java.util.Set;
 
 public class PlayGameActivity extends AppCompatActivity {
     private TextView questionView;
-    private String question = "";
-    String myChosse;
-    long countQuest;
-    ArrayList<String> listQuestion = new ArrayList<>();
+    Set<String> listQuestion;
+    ArrayList<Question> list = new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getListQuestion();
         setContentView(R.layout.activity_play_game);
+
         Button button_submit = findViewById(R.id.button_submit_ans);
+        button_submit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                int totalScore = checkScore();
+                FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
+                DatabaseReference databaseReference = firebaseDatabase.getReference("list_test");
+                databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        int num = (int)snapshot.getChildrenCount()+1;
+                        String nameNode = "test"+num;
+                        databaseReference.child(nameNode).setValue(totalScore);
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
+
+                showNotionDone(totalScore);
+                startActivity(new Intent(PlayGameActivity.this,MainActivity2.class));
+
+            }
+        });
 
 
     }
-    public boolean checkDupplicate(String ans,ArrayList<String> arrayList){
-       return arrayList.contains(ans);
+    public int checkScore(){
+        int result = 0;
+        for(int i =1; i<11;i++){
+            int index = i-1;    // vi tri cua cau hoi trong list
+            String radioGroupId = "radioGroup"+i;
+            String answer = list.get(index).getAns();   // dap an cua cau hoi tuong ung
+            // Lấy id tương ứng với tên id
+            int groupId = getResources().getIdentifier(radioGroupId, "id", getPackageName());
+            // kiem tra id co ton tai hay khong ?
+            if(groupId!=0){
+                RadioGroup radioGroup = findViewById(groupId);
+                //lay id cua radio button duoc chon
+                int selectedRadioButtonId = radioGroup.getCheckedRadioButtonId();
+                // Kiểm tra xem có RadioButton được chọn hay không
+                if (selectedRadioButtonId != -1) {
+                    // Lấy tham chiếu đến RadioButton được chọn
+                    RadioButton selectedRadioButton = findViewById(selectedRadioButtonId);
+                    // Lấy giá trị của RadioButton được chọn
+                    String selectedValue = selectedRadioButton.getText().toString();
+                    if(selectedValue.equals(answer)){
+                        result++;
+                    }
+                } else {
+                    // Không có RadioButton được chọn, không cộng điểm
+                }
+            }
+        }
+        return result;
+
     }
-   
+    // tao danh sach 10 cau hoi duoc lay ngau nhien trong database
+    public Set<String> randomList10Question(long totalQues){
+        Random rd = new Random();
+        Set<String> list = new HashSet<>();
+        while(list.size()<10){
+            int rdNum = rd.nextInt((int) totalQues)+1;
+            list.add("question"+rdNum);
+        }
+        return list;
+    }
+    // tien hanh set view tu du lieu duoc lay ve vao giao dien cau hoi
+    public void setQuestionView(ArrayList<Question> listquestion){
+        for(int i=1;i<11;i++){
+            String textViewId = "question"+i;
+            String chooseId_a = "choose"+i+'a';
+            String chooseId_b = "choose"+i+'b';
+            String chooseId_c = "choose"+i+'c';
+            String chooseId_d = "choose"+i+'d';
+            // Lấy id tương ứng với tên id
+            int resId = getResources().getIdentifier(textViewId, "id", getPackageName());
+            int choose_a = getResources().getIdentifier(chooseId_a,"id",getPackageName());
+            int choose_b = getResources().getIdentifier(chooseId_b,"id",getPackageName());
+            int choose_c = getResources().getIdentifier(chooseId_c,"id",getPackageName());
+            int choose_d = getResources().getIdentifier(chooseId_d,"id",getPackageName());
+            // Kiểm tra xem id có tồn tại hay không
+            if (resId != 0) {
+                TextView questionTextView = findViewById(resId);
+                questionTextView.setText(listquestion.get(i-1).getQuestion());
+            }
+            if(choose_a!=0){
+                RadioButton chooseA = findViewById(choose_a);
+                chooseA.setText(listquestion.get(i-1).getO1());
+            }
+            if(choose_b!=0){
+                RadioButton chooseB = findViewById(choose_b);
+                chooseB.setText(listquestion.get(i-1).getO2());
+            }
+            if(choose_c!=0){
+                RadioButton chooseC = findViewById(choose_c);
+                chooseC.setText(listquestion.get(i-1).getO3());
+                Log.d("setthanhcong","setc thanh cong");
+            }
+            if(choose_d!=0){
+                RadioButton chooseD = findViewById(choose_d);
+                chooseD.setText(listquestion.get(i-1).getO4());
+                Log.d("setthanhcong", "set d thanh cong:");
+            }
+            if(choose_d==0){
+                Log.d("id bi loi", "khong tim thay id cua D");
+            }
+        }
+    }
+    public boolean checkDupplicate(String ans, List<String> list){
+        return list.contains(ans);
+    }
     public void removeSingleNode(String nameNode) {
         DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("data_question/"+nameNode);
 
@@ -61,13 +178,27 @@ public class PlayGameActivity extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if (dataSnapshot.exists()) {
-                   for(DataSnapshot snapshot : dataSnapshot.getChildren()){
-                       String ques =(String) snapshot.child("question").getValue();
-                       listQuestion.add(ques);
-                       Log.d("resultLog", "ques = " + ques);
-                   }
-                handleList(listQuestion);
-
+                   long number = dataSnapshot.getChildrenCount();
+                    listQuestion=randomList10Question(number);  // tap hop 10  question ngau nhien
+//                    ArrayList<Question> list10Question = new ArrayList<>(); //danh sach 10 question lay theo noi dung cau hoi tao ngau nhien
+                    //ghi du lieu vao list10Question
+                    for(String question : listQuestion){
+                        Question temp = new Question();
+                        String ques = dataSnapshot.child(question).child("question").getValue().toString();
+                        String a = dataSnapshot.child(question).child("option").child("A").getValue().toString();
+                        String b = dataSnapshot.child(question).child("option").child("B").getValue().toString();
+                        String c = dataSnapshot.child(question).child("option").child("C").getValue().toString();
+                        String d = dataSnapshot.child(question).child("option").child("D").getValue().toString();
+                        String ans = dataSnapshot.child(question).child("answer").getValue().toString();
+                        temp.setQuestion(ques);
+                        temp.setO1(a);
+                        temp.setO2(b);
+                        temp.setO3(c);
+                        temp.setO4(d);
+                        temp.setAns(ans);
+                        list.add(temp);
+                    }
+                    setQuestionView(list);
                 } else {
                     Log.d("resultLog", "Không có node con.");
                 }
@@ -104,54 +235,6 @@ public class PlayGameActivity extends AppCompatActivity {
         }
     }
 
-    public void updateCountQuest() {
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference myRef = database.getReference("data_question");
-
-        myRef.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                long temp = snapshot.getChildrenCount();
-                countQuest=temp;
-                Log.d("resultCount", "count temp = " + countQuest);
-            }
-
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-                Log.e("resultCount", "Lỗi khi đọc dữ liệu từ Firebase.", error.toException());
-            }
-        });
-    }
-
-    private void countChildNodes() {
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference reference = database.getReference("data_question");
-
-        reference.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if (snapshot.exists()) {
-                    countQuest = snapshot.getChildrenCount();
-                    Log.d("ChildCount", "Number of child nodes: " + countQuest);
-
-                    // Sử dụng giá trị nodeCount ở đây hoặc gọi một hàm khác để sử dụng giá trị này
-                    handleNodeCount(countQuest);
-                } else {
-                    countQuest = 0;
-                    Log.d("ChildCount", "No child nodes.");
-
-                    // Xử lý khi không có node con (nodeCount = 0)
-                    handleNodeCount(countQuest);
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-                Log.e("ChildCount", "Error reading data from Firebase.", error.toException());
-            }
-        });
-    }
 
     private void handleNodeCount(long count) {
         // Xử lý giá trị nodeCount ở đây
@@ -163,6 +246,18 @@ public class PlayGameActivity extends AppCompatActivity {
         for(String s: arr){
             listQuestion.add(s);
         }
+    }
+    public void showNotionDone(int score){
+        LayoutInflater inflater = getLayoutInflater();
+        View layout = inflater.inflate(R.layout.notion_success_layout, (ViewGroup) findViewById(R.id.notion_done));
+        TextView text = layout.findViewById(R.id.text_notion_done);
+        text.setText("Nộp bài thành công!!! Tổng điêểm của bạn là : "+score);
+
+        Toast toast = new Toast(getApplicationContext());
+        toast.setGravity(Gravity.CENTER_VERTICAL, 0, 0);
+        toast.setDuration(Toast.LENGTH_SHORT);
+        toast.setView(layout);
+        toast.show();
     }
 
 }

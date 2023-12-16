@@ -1,5 +1,7 @@
 package com.example.quizzgame.model;
 
+import androidx.annotation.NonNull;
+
 public class Question {
     private String question;
     private String ans;
@@ -67,5 +69,12 @@ public class Question {
 
     public void setO4(String o4) {
         this.o4 = o4;
+    }
+
+    @NonNull
+    @Override
+    public String toString() {
+        String result = "question: "+this.question+"\n"+"a = "+this.o1+" b= "+this.o2+" c= "+this.o3+" d= "+this.o4+"\n"+"ans = "+this.ans+"\n";
+        return result;
     }
 }

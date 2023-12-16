@@ -38,6 +38,14 @@ public class LoginActivity extends AppCompatActivity {
         Display = findViewById(R.id.display);
         database = new DatabaseFirebase();
 
+        Button google = findViewById(R.id.google);
+        google.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(LoginActivity.this,MainActivity2.class));
+            }
+        });
+
         RegisterButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
