@@ -37,11 +37,21 @@ public class PlayGameActivity extends AppCompatActivity {
     private TextView questionView;
     Set<String> listQuestion;
     ArrayList<Question> list = new ArrayList<>();
+    ArrayList<String> quesInTest=new ArrayList<>();
     boolean isPressedSubmit;
     private CountDownTimer countDownTimer;
+    String testName;
+
+    public PlayGameActivity(String nameTest){
+        this.testName=nameTest;
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        //lay du lieu tu ListTestActivity.java
+        String testName = getIntent().getStringExtra("TEST_NAME");
+
+        quesOfTest(testName);
         getListQuestion();
         setContentView(R.layout.activity_play_game);
 
@@ -54,7 +64,7 @@ public class PlayGameActivity extends AppCompatActivity {
                 }
                 int totalScore = checkScore();
                 FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
-                DatabaseReference databaseReference = firebaseDatabase.getReference("list_test");
+                DatabaseReference databaseReference = firebaseDatabase.getReference("list_score");
                 databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -148,6 +158,26 @@ public class PlayGameActivity extends AppCompatActivity {
         }
         return list;
     }
+    // lay ten cua 10 cau hoi cua bai test
+    public void quesOfTest(String nameTest){
+        //connect to list_test
+        FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
+        DatabaseReference ref = firebaseDatabase.getReference("list_test/nameTest");
+        ref.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for(int i=1;i<11;i++){
+                    String temp ="cau"+i;
+                    quesInTest.add(snapshot.child(temp).getValue().toString());
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+    }
     // tien hanh set view tu du lieu duoc lay ve vao giao dien cau hoi
     public void setQuestionView(ArrayList<Question> listquestion){
         for(int i=1;i<11;i++){
@@ -216,10 +246,10 @@ public class PlayGameActivity extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if (dataSnapshot.exists()) {
                    long number = dataSnapshot.getChildrenCount();
-                    listQuestion=randomList10Question(number);  // tap hop 10  question ngau nhien
+                    listQuestion=randomList10Question(number); // tap hop 10  question ngau nhien
 //                    ArrayList<Question> list10Question = new ArrayList<>(); //danh sach 10 question lay theo noi dung cau hoi tao ngau nhien
                     //ghi du lieu vao list10Question
-                    for(String question : listQuestion){
+                    for(String question : quesInTest){
                         Question temp = new Question();
                         String ques = dataSnapshot.child(question).child("question").getValue().toString();
                         String a = dataSnapshot.child(question).child("option").child("A").getValue().toString();

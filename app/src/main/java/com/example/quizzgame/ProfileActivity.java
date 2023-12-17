@@ -33,7 +33,13 @@ public class ProfileActivity extends AppCompatActivity {
         tv_admin = findViewById(R.id.tv_admin);
         admin = findViewById(R.id.admin);
         checkRole();
-
+        tv_test = findViewById(R.id.tv_test);
+        tv_test.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(ProfileActivity.this,ListTestActivity.class));
+            }
+        });
         tv_name = findViewById(R.id.tv_name);
         tv_email = findViewById(R.id.tv_email);
 

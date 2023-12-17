@@ -1,0 +1,12 @@
+<!-- list_test_item.xml -->
+<Button
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/test_button"
+    android:textSize="30sp"
+    android:background="@drawable/radius"
+    android:textColor="@color/white"
+    android:layout_margin="8dp"
+    android:padding="12dp"
+    android:contentDescription="item"/>
