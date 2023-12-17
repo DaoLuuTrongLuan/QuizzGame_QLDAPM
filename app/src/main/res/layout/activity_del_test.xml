@@ -20,7 +20,7 @@
         app:layout_constraintTop_toTopOf="parent"/>
 
     <EditText
-        android:id="@+id/name_questdel"
+        android:id="@+id/name_testdel"
         android:layout_width="match_parent"
         android:layout_height="48dp"
         android:layout_marginTop="250dp"
@@ -42,5 +42,5 @@
         android:background="@drawable/radius"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/name_questdel"/>
+        app:layout_constraintTop_toBottomOf="@+id/name_testdel"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

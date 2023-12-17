@@ -64,6 +64,7 @@ public class PlayGameActivity extends AppCompatActivity {
                 databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
+
                         int num = (int)snapshot.getChildrenCount()+1;
                         String nameNode = "test"+num;
                         databaseReference.child(nameNode).setValue(totalScore);
