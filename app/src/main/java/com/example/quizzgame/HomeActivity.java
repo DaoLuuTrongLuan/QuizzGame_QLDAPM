@@ -5,11 +5,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.TextView;
 
 public class HomeActivity extends AppCompatActivity {
 
     String idUser;
     View user;
+
+    TextView category;
 
 
     @Override
@@ -29,6 +32,14 @@ public class HomeActivity extends AppCompatActivity {
                 bundle.putString("idUser", idUser);
                 intent.putExtra("data" ,bundle);
                 startActivity(intent);
+            }
+        });
+
+        category = findViewById(R.id.tv_category);
+        category.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(HomeActivity.this,MainActivity2.class));
             }
         });
     }

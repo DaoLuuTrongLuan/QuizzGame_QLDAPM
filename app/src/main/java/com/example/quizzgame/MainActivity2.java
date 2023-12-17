@@ -20,6 +20,14 @@ public class MainActivity2 extends AppCompatActivity {
                 startActivity(new Intent(MainActivity2.this, AddQuestionActivity.class));
             }
         });
+        Button btn_delquestion = findViewById(R.id.btn_option_delquestion);
+        btn_delquestion.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(MainActivity2.this,DelQuestionActivity.class));
+            }
+        });
+
         Button btn_playgame = findViewById(R.id.btn_option_playgame);
         btn_playgame.setOnClickListener(new View.OnClickListener() {
             @Override
