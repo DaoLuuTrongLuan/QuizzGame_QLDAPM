@@ -45,4 +45,17 @@ public class DatabaseFirebase {
         newData.put("password", pass);
         docRef.update(newData);
     }
+    public void updateUser(String document, String name, String username, String password, String role, String typeAccount, String email) {
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        DocumentReference docRef = db.collection("users").document(document);
+        Map<String, Object> newData = new HashMap<>();
+        newData.put("name", name);
+        newData.put("username", username);
+        newData.put("password", password);
+        newData.put("role", role);
+        newData.put("typeAccount", typeAccount);
+        newData.put("email", email);
+
+        docRef.set(newData);
+    }
 }
