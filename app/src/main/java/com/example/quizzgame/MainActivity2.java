@@ -35,5 +35,13 @@ public class MainActivity2 extends AppCompatActivity {
                 startActivity(new Intent(MainActivity2.this, PlayGameActivity.class));
             }
         });
+
+        Button btn_deltest = findViewById(R.id.btn_option_deltest);
+        btn_deltest.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(MainActivity2.this, DelTestActivity.class));
+            }
+        });
     }
 }

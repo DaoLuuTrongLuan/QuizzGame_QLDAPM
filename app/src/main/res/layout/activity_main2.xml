@@ -38,7 +38,7 @@
         android:id="@+id/btn_option_delquestion"
         android:layout_width="200dp"
         android:layout_height="100dp"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="20dp"
         android:background="@drawable/button_neon"
         android:text="Del question"
         android:textColor="@color/white"
@@ -53,7 +53,7 @@
         android:id="@+id/btn_option_playgame"
         android:layout_width="200dp"
         android:layout_height="100dp"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="20dp"
         android:background="@drawable/button_neon"
         android:text="Play game"
         android:textColor="@color/white"
@@ -64,6 +64,20 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btn_option_delquestion"
         app:layout_constraintVertical_bias="0.174" />
+    <Button
+        android:id="@+id/btn_option_deltest"
+        android:layout_width="200dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/button_neon"
+        android:text="Del Test"
+        android:textColor="@color/white"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_option_playgame" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
