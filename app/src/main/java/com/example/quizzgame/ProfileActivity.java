@@ -69,7 +69,40 @@ public class ProfileActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+        tv_admin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dialogAdmin();
+            }
+        });
         displayUser(idUser);
+    }
+
+    public void dialogAdmin() {
+        dialog = new Dialog(ProfileActivity.this);
+        dialog.setContentView(R.layout.admin_dialog);
+        TextView tv_quiz = dialog.findViewById(R.id.tv_quiz);
+        TextView tv_acc = dialog.findViewById(R.id.tv_acc);
+
+        tv_quiz.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+//                Intent intent = new Intent(ProfileActivity.this, ManageRss.class);
+//                startActivity(intent);
+                dialog.dismiss();
+            }
+        });
+
+        tv_acc.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(ProfileActivity.this, ListUser.class);
+                startActivity(intent);
+                dialog.dismiss();
+            }
+        });
+
+        dialog.show();
     }
 
     private void displayUser(String idUser) {
