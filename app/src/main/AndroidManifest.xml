@@ -58,6 +58,9 @@
         <activity
             android:name=".PlayGameActivity"
             android:exported="true" />
+        <activity
+            android:name=".AddQuestionActivity"
+            android:exported="true"/>
     </application>
 
 </manifest>
