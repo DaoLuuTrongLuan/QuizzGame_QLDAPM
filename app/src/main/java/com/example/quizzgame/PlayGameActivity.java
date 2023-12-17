@@ -40,18 +40,14 @@ public class PlayGameActivity extends AppCompatActivity {
     ArrayList<String> quesInTest=new ArrayList<>();
     boolean isPressedSubmit;
     private CountDownTimer countDownTimer;
-    String testName;
 
-    public PlayGameActivity(String nameTest){
-        this.testName=nameTest;
-    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //lay du lieu tu ListTestActivity.java
+//        lay du lieu tu ListTestActivity.java
         String testName = getIntent().getStringExtra("TEST_NAME");
 
-        quesOfTest(testName);
+//        quesOfTest();
         getListQuestion();
         setContentView(R.layout.activity_play_game);
 
@@ -162,19 +158,27 @@ public class PlayGameActivity extends AppCompatActivity {
     public void quesOfTest(String nameTest){
         //connect to list_test
         FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
-        DatabaseReference ref = firebaseDatabase.getReference("list_test/nameTest");
+        DatabaseReference ref = firebaseDatabase.getReference("list_test/" + nameTest); // Sửa lại đường dẫn
         ref.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                for(int i=1;i<11;i++){
-                    String temp ="cau"+i;
-                    quesInTest.add(snapshot.child(temp).getValue().toString());
+                quesInTest.clear(); // Xóa danh sách cũ trước khi thêm mới
+                for(int i=1; i<=10; i++){
+                    String temp ="test"+i;
+                    String questionName = snapshot.child(temp).getValue(String.class); // Đọc giá trị dưới dạng String
+                    if (questionName != null) {
+                        quesInTest.add(questionName);
+                    }
                 }
+                // Lấy dữ liệu câu hỏi dựa trên tên câu hỏi từ quesInTest
+                // ...
+                // Cập nhật giao diện với danh sách câu hỏi mới lấy được
+                // ...
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-
+                Log.e("quesOfTest", "Lỗi khi truy cập Firebase", error.toException());
             }
         });
     }
@@ -249,7 +253,7 @@ public class PlayGameActivity extends AppCompatActivity {
                     listQuestion=randomList10Question(number); // tap hop 10  question ngau nhien
 //                    ArrayList<Question> list10Question = new ArrayList<>(); //danh sach 10 question lay theo noi dung cau hoi tao ngau nhien
                     //ghi du lieu vao list10Question
-                    for(String question : quesInTest){
+                    for(String question : listQuestion){
                         Question temp = new Question();
                         String ques = dataSnapshot.child(question).child("question").getValue().toString();
                         String a = dataSnapshot.child(question).child("option").child("A").getValue().toString();
@@ -303,22 +307,12 @@ public class PlayGameActivity extends AppCompatActivity {
     }
 
 
-    private void handleNodeCount(long count) {
-        // Xử lý giá trị nodeCount ở đây
-        Log.d("ChildCount", "Handling node count: " + count);
-        getListQuestion();
 
-    }
-    private void handleList(ArrayList<String> arr){
-        for(String s: arr){
-            listQuestion.add(s);
-        }
-    }
     public void showNotionDone(int score){
         LayoutInflater inflater = getLayoutInflater();
         View layout = inflater.inflate(R.layout.notion_success_layout, (ViewGroup) findViewById(R.id.notion_done));
         TextView text = layout.findViewById(R.id.text_notion_done);
-        text.setText("Nộp bài thành công!!! Tổng điêểm của bạn là : "+score);
+        text.setText("Nộp bài thành công!!! Tổng điểm của bạn là : "+score);
 
         Toast toast = new Toast(getApplicationContext());
         toast.setGravity(Gravity.CENTER_VERTICAL, 0, 0);
