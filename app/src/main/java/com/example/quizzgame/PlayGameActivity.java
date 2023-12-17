@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -36,6 +37,8 @@ public class PlayGameActivity extends AppCompatActivity {
     private TextView questionView;
     Set<String> listQuestion;
     ArrayList<Question> list = new ArrayList<>();
+    boolean isPressedSubmit;
+    private CountDownTimer countDownTimer;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,6 +49,9 @@ public class PlayGameActivity extends AppCompatActivity {
         button_submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if (countDownTimer != null) {
+                    countDownTimer.cancel(); // Hủy Countdown Timer
+                }
                 int totalScore = checkScore();
                 FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
                 DatabaseReference databaseReference = firebaseDatabase.getReference("list_test");
@@ -64,11 +70,42 @@ public class PlayGameActivity extends AppCompatActivity {
                 });
 
                 showNotionDone(totalScore);
+                isPressedSubmit=true;
                 startActivity(new Intent(PlayGameActivity.this,MainActivity2.class));
-
             }
         });
+        countDownTime(button_submit,10);
+    }
+    public void countDownTime(Button button,int minutes){
+        // Khai báo và lấy tham chiếu của TextView cho thời gian đếm ngược
+        TextView countdownTextView = findViewById(R.id.countdown_timer);
 
+        // Thời gian đếm ngược là 10 phút (600000 milliseconds)
+        long countdownMillis = minutes * 60 * 1000;
+        // Khởi tạo CountDownTimer với thời gian đếm ngược và bước là 1 giây
+        countDownTimer =new CountDownTimer(countdownMillis, 1000) {
+            @Override
+            public void onTick(long millisUntilFinished) {
+                // Cập nhật nội dung TextView mỗi giây
+                long secondsRemaining = millisUntilFinished / 1000;
+                long minutes = secondsRemaining / 60;
+                long seconds = secondsRemaining % 60;
+
+                // Định dạng thời gian và cập nhật vào TextView
+                String formattedTime = String.format("%02d:%02d", minutes, seconds);
+                Log.d("count down time","time : "+formattedTime );
+                countdownTextView.setText(formattedTime);
+
+            }
+
+            @Override
+            public void onFinish() {
+                // Xử lý khi đếm ngược kết thúc (nếu cần)
+                Log.d("count down time", "onFinish: da ket thuc");
+                countdownTextView.setText("00:00");
+                button.callOnClick();
+            }
+        }.start();
 
     }
     public int checkScore(){

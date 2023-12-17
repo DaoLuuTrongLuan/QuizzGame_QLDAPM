@@ -565,6 +565,17 @@
                 <!-- Radio Buttons for Question 10-->
             </LinearLayout>
             <!-- Add more Question Items as needed -->
+            <!-- Thêm một TextView để hiển thị thời gian đếm ngược -->
+
+            <TextView
+                android:id="@+id/countdown_timer"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="00:00"
+                android:textSize="24sp"
+                android:layout_gravity="center_horizontal" />
+
             <Button
                 android:id="@+id/button_submit_ans"
                 android:layout_width="150dp"
